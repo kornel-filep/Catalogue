@@ -5,27 +5,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Episode {
+public class Series {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Series series;
     private String name;
-    private int episodeCount;
-    private int season;
+    private int episodes;
     private String description;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Episode> episodeList;
 
-    public Episode(Series series, String name, int episodeCount, int season, String description) {
-        this.series = series;
+    public Series(String name, int episodes, String description, List<Episode> episodeList) {
         this.name = name;
-        this.episodeCount = episodeCount;
-        this.season = season;
+        this.episodes = episodes;
         this.description = description;
+        this.episodeList = episodeList;
     }
 }

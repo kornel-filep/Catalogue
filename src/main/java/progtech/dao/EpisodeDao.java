@@ -5,15 +5,23 @@ import progtech.model.Episode;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.swing.text.html.parser.Entity;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Component
 public class EpisodeDao {
     @PersistenceContext
     EntityManager entityManager;
 
+    @Transactional
     public void persist(Episode episode){
         entityManager.persist(episode);
+    }
+
+    public List<Episode> findAll(){
+        Query q = entityManager.createQuery("SELECT e FROM e Episode");
+        return q.getResultList();
     }
 
 }

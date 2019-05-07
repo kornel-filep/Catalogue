@@ -1,29 +1,44 @@
 package progtech.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import progtech.dao.UserDao;
-import progtech.model.user.User;
-import progtech.spring.Config;
+import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import progtech.Main;
+import progtech.service.UserService;
 
+import java.io.IOException;
+
+@Controller
 public class LoginPageController {
     @FXML
     private TextField loginField;
     @FXML
     private PasswordField passwordField;
+    private UserService userService;
 
-
-    public void login(){
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Config.class);
-        User user = new User(loginField.getText(), passwordField.getText());
-        applicationContext.getBean(UserDao.class).persist(user);
+    public LoginPageController(UserService userService) {
+        this.userService = userService;
     }
 
-    public void register(){
-        //implement registration logic
+    public void login() throws IOException {
+        userService.loginUser(loginField.getText(), passwordField.getText());
+        //Dont forget this may not work!
+        loginField.getScene().getWindow().hide();
+        Parent root = FXMLLoader.load(getClass().getResource("/mainlist.fxml"));
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Catalogue");
+        primaryStage.setScene(new Scene(root, 500, 475));
+        primaryStage.show();
+    }
+
+    public void register() {
+        userService.registerUser(loginField.getText(), passwordField.getText());
     }
 
 }
