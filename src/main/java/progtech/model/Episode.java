@@ -1,16 +1,18 @@
 package progtech.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Objects;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
+@Setter
 public class Episode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,15 +39,11 @@ public class Episode {
         if (o == null || getClass() != o.getClass())
             return false;
         Episode episode = (Episode) o;
-        return id == episode.id &&
-                episodeCount == episode.episodeCount &&
-                season == episode.season &&
-                Objects.equals(name, episode.name) &&
-                Objects.equals(description, episode.description);
+        return id == episode.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, episodeCount, season, description);
+        return Objects.hash(id);
     }
 }
