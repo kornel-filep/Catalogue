@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -27,5 +28,24 @@ public class Episode {
         this.episodeCount = episodeCount;
         this.season = season;
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Episode episode = (Episode) o;
+        return id == episode.id &&
+                episodeCount == episode.episodeCount &&
+                season == episode.season &&
+                Objects.equals(name, episode.name) &&
+                Objects.equals(description, episode.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, episodeCount, season, description);
     }
 }

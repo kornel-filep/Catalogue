@@ -5,6 +5,14 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0"
             xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progtech.controller.MainlistPageController">
     <children>
+        <TableView fx:id="episodeTable" prefHeight="394.0" prefWidth="534.0">
+            <columns>
+                <TableColumn fx:id="episodeNumberColumn" prefWidth="67.0" text="Number"/>
+                <TableColumn fx:id="episodeNameColumn" prefWidth="114.0" text="Episode Name"/>
+                <TableColumn fx:id="episodeSeasonColumn" prefWidth="121.0" text="Season"/>
+                <TableColumn fx:id="episodeDescriptionColumn" prefWidth="230.0" text="Description"/>
+            </columns>
+        </TableView>
         <TableView fx:id="table" layoutX="6.0" layoutY="33.0" prefHeight="363.0" prefWidth="527.0">
             <columns>
                 <TableColumn fx:id="nameColumn" prefWidth="157.0" text="Show Name"/>
@@ -17,5 +25,7 @@
         <Label fx:id="userName" layoutX="572.0" layoutY="25.0"/>
         <Button fx:id="listButton" layoutX="541.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#showSeries" prefHeight="27.0"
                 prefWidth="94.0" text="Show Own"/>
+        <Button fx:id="watchedButton" layoutX="540.0" layoutY="290.0" mnemonicParsing="false" onAction="#watchedClick" prefHeight="27.0"
+                prefWidth="94.0" text="Watched"/>
     </children>
 </AnchorPane>

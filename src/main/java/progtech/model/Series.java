@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -19,9 +19,9 @@ public class Series {
     private int episodes;
     private String description;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Episode> episodeList;
+    private Set<Episode> episodeList;
 
-    public Series(String name, int episodes, String description, List<Episode> episodeList) {
+    public Series(String name, int episodes, String description, Set<Episode> episodeList) {
         this.name = name;
         this.episodes = episodes;
         this.description = description;
