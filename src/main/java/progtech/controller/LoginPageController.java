@@ -8,11 +8,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import progtech.Main;
 import progtech.dao.ShowDao;
 import progtech.model.Series;
+import progtech.model.user.User;
 import progtech.service.UserService;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class LoginPageController {
     }
 
     public void login() throws IOException {
-        userService.loginUser(loginField.getText(), passwordField.getText());
+        User user = userService.loginAndGetUser(loginField.getText(), passwordField.getText());
         //Dont forget this may not work!
         loginField.getScene().getWindow().hide();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mainlist.fxml"));
@@ -42,12 +42,14 @@ public class LoginPageController {
         Parent root = fxmlLoader.load();
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Catalogue");
-        primaryStage.setScene(new Scene(root, 900, 775));
+        primaryStage.setScene(new Scene(root, 650, 400));
 
         mainlistPageController.getNameColumn().setCellValueFactory(new PropertyValueFactory<Series, String>("name"));
         mainlistPageController.getSeasonColumn().setCellValueFactory(new PropertyValueFactory<Series, Integer>("episodes"));
         mainlistPageController.getDescriptionColumn().setCellValueFactory(new PropertyValueFactory<Series, String>("description"));
         mainlistPageController.getTable().getItems().addAll(showDao.findAll());
+        mainlistPageController.setUser(user);
+        mainlistPageController.getUserName().setText(user.getName());
         primaryStage.show();
     }
 

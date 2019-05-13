@@ -1,15 +1,10 @@
 package progtech.service;
 
 import org.springframework.stereotype.Service;
-import progtech.Main;
-import progtech.dao.ShowDao;
 import progtech.dao.UserDao;
-import progtech.model.Episode;
-import progtech.model.Series;
 import progtech.model.user.User;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 
 @Service
 public class UserService {
@@ -33,6 +28,22 @@ public class UserService {
         }
     }
 
+    public User loginAndGetUser(String username, String password) {
+        try {
+            User user = findByUsername(username);
+            if (user.getPassword().equals(password)) {
+                System.out.println("logged in as" + username);
+                return user;
+            } else {
+                System.out.println("wrong pw");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("No such user.");
+        }
+        return null;
+    }
+
     public void registerUser(String username, String password) {
         try {
             findByUsername(username);
@@ -51,6 +62,10 @@ public class UserService {
     @Transactional
     public void persist(User user) {
         userDao.persist(user);
+    }
+
+    public void update(User user) {
+        userDao.update(user);
     }
 
     public User findByUsername(String username) {

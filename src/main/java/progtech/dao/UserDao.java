@@ -18,6 +18,11 @@ public class UserDao {
         entityManager.persist(user);
     }
 
+    @Transactional
+    public void update(User user) {
+        entityManager.merge(user);
+    }
+
     public User find(long id) {
         return entityManager.find(User.class, id);
     }
