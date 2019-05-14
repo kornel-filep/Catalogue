@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="510.0"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progtech.controller.AddNewSeriesController">
+    <children>
+        <Label layoutX="53.0" layoutY="35.0" text="Name"/>
+        <TextField fx:id="nameField" layoutX="96.0" layoutY="30.0" prefHeight="27.0" prefWidth="350.0"/>
+        <Button fx:id="saveButton" layoutX="448.0" layoutY="259.0" mnemonicParsing="false" onMouseClicked="#save" text="Save"/>
+        <Label layoutX="33.0" layoutY="82.0" text="Episodes"/>
+        <Label layoutX="18.0" layoutY="115.0" text="Description"/>
+        <TextField fx:id="episodesField" layoutX="96.0" layoutY="77.0" prefHeight="27.0" prefWidth="350.0"/>
+        <TextArea fx:id="descriptionField" layoutX="96.0" layoutY="115.0" prefHeight="171.0" prefWidth="350.0"/>
+    </children>
+</AnchorPane>
