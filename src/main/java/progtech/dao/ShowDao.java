@@ -1,7 +1,6 @@
 package progtech.dao;
 
 import org.springframework.stereotype.Component;
-import progtech.model.Episode;
 import progtech.model.Series;
 
 import javax.persistence.EntityManager;
@@ -23,5 +22,10 @@ public class ShowDao {
     public List<Series> findAll(){
         Query q = entityManager.createQuery("SELECT e FROM Series e");
         return q.getResultList();
+    }
+
+    @Transactional
+    public void update(Series series) {
+        entityManager.merge(series);
     }
 }

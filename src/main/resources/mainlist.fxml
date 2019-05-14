@@ -18,7 +18,7 @@
             <columns>
                 <TableColumn fx:id="nameColumn" prefWidth="157.0" text="Show Name"/>
                 <TableColumn fx:id="seasonColumn" prefWidth="153.0" text="Seasons"/>
-                <TableColumn fx:id="descriptionColumn" prefWidth="223.0" text="Description"/>
+                <TableColumn fx:id="descriptionColumn" prefWidth="220.0" text="Description"/>
             </columns>
         </TableView>
         <Button fx:id="addButton" layoutX="541.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#addSeriesToUser" prefHeight="27.0"

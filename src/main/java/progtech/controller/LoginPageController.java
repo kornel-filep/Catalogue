@@ -33,7 +33,6 @@ public class LoginPageController {
 
     public void login() throws IOException {
         User user = userService.loginAndGetUser(loginField.getText(), passwordField.getText());
-        //Dont forget this may not work!
         loginField.getScene().getWindow().hide();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mainlist.fxml"));
         fxmlLoader.setControllerFactory(Main.getSpringContext()::getBean);

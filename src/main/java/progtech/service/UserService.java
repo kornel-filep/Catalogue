@@ -68,6 +68,10 @@ public class UserService {
         userDao.update(user);
     }
 
+    public void refresh(User user) {
+        userDao.refresh(user);
+    }
+
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }

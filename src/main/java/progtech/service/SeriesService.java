@@ -18,4 +18,12 @@ public class SeriesService {
         Series series = new Series(name, Integer.parseInt(episodeCount), description, new HashSet<>());
         showDao.persist(series);
     }
+
+    public void persist(Series series) {
+        showDao.persist(series);
+    }
+
+    public void update(Series series) {
+        showDao.update(series);
+    }
 }

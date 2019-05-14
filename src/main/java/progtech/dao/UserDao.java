@@ -32,4 +32,9 @@ public class UserDao {
         q.setParameter("username", username);
         return (User) q.getSingleResult();
     }
+
+    @Transactional
+    public void refresh(User user) {
+        entityManager.refresh(user);
+    }
 }

@@ -33,6 +33,7 @@ public class MainlistPageController implements Initializable {
     @Getter
     private TableView<Series> table;
     @FXML
+    @Getter
     private TableView<Episode> episodeTable;
     @FXML
     private TableColumn<Episode, Integer> episodeNumberColumn;
@@ -75,10 +76,12 @@ public class MainlistPageController implements Initializable {
 
     private ShowDao showDao;
     private UserService userService;
+    private AddNewEpisodeController addNewEpisodeController;
 
-    public MainlistPageController(ShowDao showDao, UserService userService) {
+    public MainlistPageController(ShowDao showDao, UserService userService, AddNewEpisodeController addNewEpisodeController) {
         this.showDao = showDao;
         this.userService = userService;
+        this.addNewEpisodeController = addNewEpisodeController;
     }
 
     @Override
@@ -135,6 +138,7 @@ public class MainlistPageController implements Initializable {
 
     public void showSeries() {
         if (listButton.getText().equals("Show Own")) {
+            user = userService.findById(user.getId());
             table.getItems().clear();
             table.getItems().addAll(user.getSeries());
             listButton.setText("Show All");
@@ -165,8 +169,15 @@ public class MainlistPageController implements Initializable {
         primaryStage.show();
     }
 
-    public void addNewEpisode() {
-
+    public void addNewEpisode() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addEpisode.fxml"));
+        fxmlLoader.setControllerFactory(Main.getSpringContext()::getBean);
+        Parent root = fxmlLoader.load();
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Add Episode");
+        primaryStage.setScene(new Scene(root, 525, 250));
+        addNewEpisodeController.setSeries(table.getSelectionModel().getSelectedItem());
+        primaryStage.show();
     }
 
 }
