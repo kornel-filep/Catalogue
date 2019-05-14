@@ -2,21 +2,27 @@ package progtech.controller;
 
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Controller;
+import progtech.Main;
 import progtech.dao.ShowDao;
 import progtech.model.Episode;
 import progtech.model.Series;
 import progtech.model.user.User;
 import progtech.service.UserService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -56,6 +62,13 @@ public class MainlistPageController implements Initializable {
     private Label userName;
     @FXML
     private Button listButton;
+    @FXML
+    @Getter
+    private Button adminAddNewEpisode;
+    @FXML
+    @Getter
+    private Button adminAddNewSeries;
+
     @Setter
     private User user;
     private Series currentlySelectedSeries;
@@ -70,7 +83,11 @@ public class MainlistPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Series, String>("name"));
+        seasonColumn.setCellValueFactory(new PropertyValueFactory<Series, Integer>("episodes"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<Series, String>("description"));
         watchedButton.visibleProperty().setValue(false);
+        //watchedButton.getScene().getWindow().focusedProperty().addListener(o -> table.getItems().addAll(showDao.findAll()));
     }
 
     /**
@@ -136,6 +153,20 @@ public class MainlistPageController implements Initializable {
         userService.update(user);
         episodeTable.getItems().clear();
         episodeTable.getItems().addAll(currentlySelectedSeries.getEpisodeList());
+    }
+
+    public void addNewSeries() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addSeries.fxml"));
+        fxmlLoader.setControllerFactory(Main.getSpringContext()::getBean);
+        Parent root = fxmlLoader.load();
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Add Series");
+        primaryStage.setScene(new Scene(root, 510, 300));
+        primaryStage.show();
+    }
+
+    public void addNewEpisode() {
+
     }
 
 }

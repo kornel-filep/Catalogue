@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0"
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0"
             xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progtech.controller.MainlistPageController">
     <children>
         <TableView fx:id="episodeTable" prefHeight="394.0" prefWidth="534.0">
@@ -21,12 +21,16 @@
                 <TableColumn fx:id="descriptionColumn" prefWidth="223.0" text="Description"/>
             </columns>
         </TableView>
-        <Button fx:id="addButton" layoutX="542.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#addSeriesToUser" prefHeight="27.0"
-                prefWidth="94.0" text="Add"/>
+        <Button fx:id="addButton" layoutX="541.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#addSeriesToUser" prefHeight="27.0"
+                prefWidth="154.0" text="Add"/>
         <Label fx:id="userName" layoutX="572.0" layoutY="25.0"/>
-        <Button fx:id="listButton" layoutX="541.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#showSeries" prefHeight="27.0"
-                prefWidth="94.0" text="Show Own"/>
-        <Button fx:id="watchedButton" layoutX="540.0" layoutY="290.0" mnemonicParsing="false" onAction="#watchedClick" prefHeight="27.0"
-                prefWidth="94.0" text="Watched"/>
+        <Button fx:id="listButton" layoutX="541.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#showSeries" prefHeight="27.0"
+                prefWidth="154.0" text="Show Own"/>
+        <Button fx:id="watchedButton" layoutX="541.0" layoutY="290.0" mnemonicParsing="false" onAction="#watchedClick" prefHeight="27.0"
+                prefWidth="154.0" text="Watched"/>
+        <Button fx:id="adminAddNewSeries" layoutX="541.0" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#addNewSeries" prefHeight="27.0"
+                prefWidth="154.0" text="Add new series"/>
+        <Button fx:id="adminAddNewEpisode" layoutX="541.0" layoutY="222.0" mnemonicParsing="false" onMouseClicked="#addNewEpisode" prefHeight="27.0"
+                prefWidth="154.0" text="Add new episode"/>
     </children>
 </AnchorPane>

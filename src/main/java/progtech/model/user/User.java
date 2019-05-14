@@ -22,6 +22,7 @@ public class User {
     private Set<Series> series;
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Episode> watchedEpisodes;
+    private boolean isAdmin;
 
     public User(String name, String password) {
         this.name = name;
