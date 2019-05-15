@@ -48,3 +48,4 @@ You can build a standalone `.jar` application, and run it
 - `$ mvn clean package`
 - `$ cd target`
 - `$ java -jar Catalogue-X.X.X.jar ` (where x.x.x is the current version number)
+- *Keep in mind that the application.properties is missing and should be created individually*
