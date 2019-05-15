@@ -23,7 +23,6 @@
         </TableView>
         <Button fx:id="addButton" layoutX="541.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#addSeriesToUser" prefHeight="27.0"
                 prefWidth="154.0" text="Add"/>
-        <Label fx:id="userName" layoutX="572.0" layoutY="25.0"/>
         <Button fx:id="listButton" layoutX="541.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#showSeries" prefHeight="27.0"
                 prefWidth="154.0" text="Show Own"/>
         <Button fx:id="watchedButton" layoutX="541.0" layoutY="290.0" mnemonicParsing="false" onAction="#watchedClick" prefHeight="27.0"

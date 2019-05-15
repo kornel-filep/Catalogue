@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,10 +15,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Controller;
 import progtech.Main;
-import progtech.dao.ShowDao;
 import progtech.model.Episode;
 import progtech.model.Series;
 import progtech.model.user.User;
+import progtech.service.SeriesService;
 import progtech.service.UserService;
 
 import java.io.IOException;
@@ -59,9 +58,6 @@ public class MainlistPageController implements Initializable {
     @FXML
     private Button watchedButton;
     @FXML
-    @Getter
-    private Label userName;
-    @FXML
     private Button listButton;
     @FXML
     @Getter
@@ -73,13 +69,13 @@ public class MainlistPageController implements Initializable {
     @Setter
     private User user;
     private Series currentlySelectedSeries;
+    private SeriesService seriesService;
 
-    private ShowDao showDao;
     private UserService userService;
     private AddNewEpisodeController addNewEpisodeController;
 
-    public MainlistPageController(ShowDao showDao, UserService userService, AddNewEpisodeController addNewEpisodeController) {
-        this.showDao = showDao;
+    public MainlistPageController(SeriesService seriesService, UserService userService, AddNewEpisodeController addNewEpisodeController) {
+        this.seriesService = seriesService;
         this.userService = userService;
         this.addNewEpisodeController = addNewEpisodeController;
     }
@@ -145,7 +141,7 @@ public class MainlistPageController implements Initializable {
             addButton.setText("Show Episodes");
         } else if (listButton.getText().equals("Show All")) {
             table.getItems().clear();
-            table.getItems().addAll(showDao.findAll());
+            table.getItems().addAll(seriesService.getAllSeries());
             listButton.setText("Show Own");
             addButton.setText("Add");
         }

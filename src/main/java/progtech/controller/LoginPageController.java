@@ -2,32 +2,43 @@ package progtech.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 import progtech.Main;
-import progtech.dao.ShowDao;
 import progtech.model.user.User;
+import progtech.service.SeriesService;
 import progtech.service.UserService;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Controller
-public class LoginPageController {
+public class LoginPageController implements Initializable {
     @FXML
     private TextField loginField;
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private AnchorPane anchorPane;
     private UserService userService;
-    private ShowDao showDao;
+    private SeriesService seriesService;
     private MainlistPageController mainlistPageController;
 
-    public LoginPageController(UserService userService, ShowDao showDao, MainlistPageController mainlistPageController) {
+    public LoginPageController(UserService userService, SeriesService seriesService, MainlistPageController mainlistPageController) {
         this.userService = userService;
-        this.showDao = showDao;
+        this.seriesService = seriesService;
         this.mainlistPageController = mainlistPageController;
     }
 
@@ -41,14 +52,13 @@ public class LoginPageController {
         primaryStage.setTitle("Catalogue");
         primaryStage.setScene(new Scene(root, 700, 400));
         mainlistPageController.setUser(user);
-        mainlistPageController.getUserName().setText("Logged in as: " + user.getName());
         mainlistPageController
                 .getTable()
                 .getScene()
                 .getWindow()
                 .focusedProperty().addListener(o -> {
             mainlistPageController.getTable().getItems().clear();
-            mainlistPageController.getTable().getItems().addAll(showDao.findAll());
+            mainlistPageController.getTable().getItems().addAll(seriesService.getAllSeries());
         });
         if (user.isAdmin()) {
             mainlistPageController.getAdminAddNewEpisode().visibleProperty().setValue(true);
@@ -64,4 +74,13 @@ public class LoginPageController {
         userService.registerUser(loginField.getText(), passwordField.getText());
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        anchorPane.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
+            if (ev.getCode() == KeyCode.ENTER) {
+                loginButton.fire();
+                ev.consume();
+            }
+        });
+    }
 }

@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
-public class ShowDao {
+public class SeriesDao {
     @PersistenceContext
     EntityManager entityManager;
 
