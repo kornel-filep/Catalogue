@@ -1,5 +1,6 @@
 package progtech.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import progtech.dao.UserDao;
 import progtech.model.user.User;
@@ -7,6 +8,7 @@ import progtech.model.user.User;
 import javax.transaction.Transactional;
 
 @Service
+@Slf4j
 public class UserService {
     private UserDao userDao;
 
@@ -14,32 +16,17 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    public void loginUser(String username, String password) {
-        try {
-            User user = findByUsername(username);
-            if (user.getPassword().equals(password)) {
-                System.out.println("logged in as" + username);
-            } else {
-                System.out.println("wrong pw");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("No such user.");
-        }
-    }
-
     public User loginAndGetUser(String username, String password) {
         try {
             User user = findByUsername(username);
             if (user.getPassword().equals(password)) {
-                System.out.println("logged in as" + username);
                 return user;
             } else {
-                System.out.println("wrong pw");
+                log.debug("Wrong password for user : " + username);
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("No such user.");
+            log.debug("No such user" + e);
+            log.debug("No such user: " + username);
         }
         return null;
     }
@@ -47,11 +34,11 @@ public class UserService {
     public void registerUser(String username, String password) {
         try {
             findByUsername(username);
-            System.out.println("Already existing user");
+            log.debug("Already existing user");
         } catch (Exception e) {
             User user = new User(username, password);
             persist(user);
-            System.out.println("Registered user " + username);
+            log.debug("Registered user " + username);
         }
     }
 

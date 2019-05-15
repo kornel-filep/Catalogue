@@ -23,9 +23,9 @@ public class AddNewSeriesController implements Initializable {
     @FXML
     private TextArea descriptionField;
     @FXML
-    private AnchorPane anchorPane;
-    @FXML
     private Button saveButton;
+    @FXML
+    private AnchorPane anchorPane;
     private SeriesService seriesService;
 
     public AddNewSeriesController(SeriesService seriesService) {

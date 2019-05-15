@@ -6,11 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
+@Slf4j
 public class Main extends Application {
 
     @Getter
@@ -21,6 +23,7 @@ public class Main extends Application {
 
     @Override
     public void init() throws Exception {
+        log.debug("Initializing application with custom spring context");
         springContext = SpringApplication.run(Main.class);
         fxmlLoader = new FXMLLoader(getClass().getResource("/login.fxml"));
         fxmlLoader.setControllerFactory(springContext::getBean);

@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import progtech.Main;
 import progtech.model.user.User;
@@ -23,6 +24,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Controller
+@Slf4j
 public class LoginPageController implements Initializable {
     @FXML
     private TextField loginField;
@@ -42,9 +44,34 @@ public class LoginPageController implements Initializable {
         this.mainlistPageController = mainlistPageController;
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        log.debug("initializing event handler for anchor pane");
+        anchorPane.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
+            if (ev.getCode() == KeyCode.ENTER) {
+                loginButton.fire();
+                ev.consume();
+            }
+        });
+    }
+
     public void login() throws IOException {
+        log.debug("Starting login for username: " + loginField.getText());
         User user = userService.loginAndGetUser(loginField.getText(), passwordField.getText());
-        loginField.getScene().getWindow().hide();
+        if (user != null) {
+            log.info("Logged in user");
+            loginField.getScene().getWindow().hide();
+            Stage primaryStage = setUpMainScreen(user);
+            primaryStage.show();
+        }
+    }
+
+    public void register() {
+        userService.registerUser(loginField.getText(), passwordField.getText());
+    }
+
+    private Stage setUpMainScreen(User user) throws IOException {
+        log.debug("Setting up the main screen");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mainlist.fxml"));
         fxmlLoader.setControllerFactory(Main.getSpringContext()::getBean);
         Parent root = fxmlLoader.load();
@@ -61,26 +88,13 @@ public class LoginPageController implements Initializable {
             mainlistPageController.getTable().getItems().addAll(seriesService.getAllSeries());
         });
         if (user.isAdmin()) {
+            log.debug(user + " is admin so displaying admin buttons");
             mainlistPageController.getAdminAddNewEpisode().visibleProperty().setValue(true);
             mainlistPageController.getAdminAddNewSeries().visibleProperty().setValue(true);
         } else {
             mainlistPageController.getAdminAddNewSeries().visibleProperty().setValue(false);
             mainlistPageController.getAdminAddNewSeries().visibleProperty().setValue(false);
         }
-        primaryStage.show();
-    }
-
-    public void register() {
-        userService.registerUser(loginField.getText(), passwordField.getText());
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        anchorPane.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
-            if (ev.getCode() == KeyCode.ENTER) {
-                loginButton.fire();
-                ev.consume();
-            }
-        });
+        return primaryStage;
     }
 }

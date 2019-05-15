@@ -39,11 +39,14 @@ public class Episode {
         if (o == null || getClass() != o.getClass())
             return false;
         Episode episode = (Episode) o;
-        return id == episode.id;
+        return episodeCount == episode.episodeCount &&
+                season == episode.season &&
+                Objects.equals(name, episode.name) &&
+                Objects.equals(description, episode.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(name, episodeCount, season, description);
     }
 }

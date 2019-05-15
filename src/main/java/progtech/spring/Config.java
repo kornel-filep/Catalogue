@@ -1,5 +1,6 @@
 package progtech.spring;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,6 +22,7 @@ import java.util.Properties;
 @ComponentScan({"progtech.dao", "progtech.service", "progtech.controller"})
 @PropertySource("application.properties")
 @EnableTransactionManagement
+@Slf4j
 public class Config {
     @Value("${spring.datasource.url}")
     private String jdbcURL;
@@ -34,10 +36,8 @@ public class Config {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        System.out.println(driverClassName);
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println(jdbcURL);
+        log.debug("Driver class name: " + driverClassName);
+        log.debug("JDBCURL + " + jdbcURL);
         dataSource.setDriverClassName(driverClassName);
         dataSource.setUrl(jdbcURL);
         dataSource.setUsername(username);

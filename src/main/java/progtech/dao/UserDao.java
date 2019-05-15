@@ -28,9 +28,13 @@ public class UserDao {
     }
 
     public User findByUsername(String username) {
-        Query q = entityManager.createQuery("SELECT e FROM User e WHERE name = :username");
-        q.setParameter("username", username);
-        return (User) q.getSingleResult();
+        try {
+            Query q = entityManager.createQuery("SELECT e FROM User e WHERE name = :username");
+            q.setParameter("username", username);
+            return (User) q.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Transactional

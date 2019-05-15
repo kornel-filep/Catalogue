@@ -2,22 +2,18 @@ package progtech.controller;
 
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Controller;
-import progtech.Main;
 import progtech.model.Episode;
 import progtech.model.Series;
 import progtech.model.user.User;
+import progtech.service.EpisodeService;
 import progtech.service.SeriesService;
 import progtech.service.UserService;
 
@@ -73,11 +69,14 @@ public class MainlistPageController implements Initializable {
 
     private UserService userService;
     private AddNewEpisodeController addNewEpisodeController;
+    private EpisodeService episodeService;
 
-    public MainlistPageController(SeriesService seriesService, UserService userService, AddNewEpisodeController addNewEpisodeController) {
+    public MainlistPageController(SeriesService seriesService, UserService userService,
+            AddNewEpisodeController addNewEpisodeController, EpisodeService episodeService) {
         this.seriesService = seriesService;
         this.userService = userService;
         this.addNewEpisodeController = addNewEpisodeController;
+        this.episodeService = episodeService;
     }
 
     @Override
@@ -86,7 +85,6 @@ public class MainlistPageController implements Initializable {
         seasonColumn.setCellValueFactory(new PropertyValueFactory<Series, Integer>("episodes"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<Series, String>("description"));
         watchedButton.visibleProperty().setValue(false);
-        //watchedButton.getScene().getWindow().focusedProperty().addListener(o -> table.getItems().addAll(showDao.findAll()));
     }
 
     /**
@@ -156,24 +154,13 @@ public class MainlistPageController implements Initializable {
     }
 
     public void addNewSeries() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addSeries.fxml"));
-        fxmlLoader.setControllerFactory(Main.getSpringContext()::getBean);
-        Parent root = fxmlLoader.load();
-        Stage primaryStage = new Stage();
-        primaryStage.setTitle("Add Series");
-        primaryStage.setScene(new Scene(root, 510, 300));
-        primaryStage.show();
+        seriesService.initializeAddNewSeriesScreen();
     }
 
     public void addNewEpisode() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addEpisode.fxml"));
-        fxmlLoader.setControllerFactory(Main.getSpringContext()::getBean);
-        Parent root = fxmlLoader.load();
-        Stage primaryStage = new Stage();
-        primaryStage.setTitle("Add Episode");
-        primaryStage.setScene(new Scene(root, 525, 250));
-        addNewEpisodeController.setSeries(table.getSelectionModel().getSelectedItem());
-        primaryStage.show();
+        if (table.getSelectionModel().getSelectedItem() != null) {
+            episodeService.initializeEpisodeScreen(addNewEpisodeController, table);
+        }
     }
 
 }
