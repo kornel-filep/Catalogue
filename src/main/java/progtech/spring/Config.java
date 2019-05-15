@@ -18,6 +18,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * Spring configuration of JPA for the project.
+ */
 @Configuration
 @ComponentScan({"progtech.dao", "progtech.service", "progtech.controller"})
 @PropertySource("application.properties")
