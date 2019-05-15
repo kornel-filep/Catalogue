@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * The Dao that interacts with the Episode domain object
+ * The Dao that interacts with the Episode domain object.
  */
 @Component
 public class EpisodeDao {

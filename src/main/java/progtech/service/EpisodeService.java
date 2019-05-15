@@ -28,7 +28,7 @@ public class EpisodeService {
     }
 
     /**
-     * Creates and Episode object from text values and a Series object
+     * Creates and Episode object from text values and a Series object.
      * @param series The Series the episode belongs to.
      * @param name The name of the episode.
      * @param episodeCount The episode number in the season
@@ -49,7 +49,7 @@ public class EpisodeService {
     }
 
     /**
-     * Initializes the episode Screen
+     * Initializes the episode Screen.
      * @param addNewEpisodeController the controller used to set the series
      * @param table the table to get the selected series
      * @throws IOException then the fxml cannot be found

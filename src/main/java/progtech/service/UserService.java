@@ -58,7 +58,7 @@ public class UserService {
     }
 
     /**
-     * Uses the DAO to find the user by its id
+     * Uses the DAO to find the user by its id.
      * @param id the id of the user
      * @return the User with the id
      */

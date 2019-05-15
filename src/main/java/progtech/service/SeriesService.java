@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * The Service to interact with Series and DAOs
+ * The Service to interact with Series and DAOs.
  */
 @Service
 @Slf4j
@@ -38,7 +38,7 @@ public class SeriesService {
     }
 
     /**
-     * Persists the Series via the DAO
+     * Persists the Series via the DAO.
      * @param series the Series to be persisted
      */
     public void persist(Series series) {
@@ -46,7 +46,7 @@ public class SeriesService {
     }
 
     /**
-     * Updates the Series via the DAO
+     * Updates the Series via the DAO.
      * @param series the Series to be updated
      */
     public void update(Series series) {
@@ -54,7 +54,7 @@ public class SeriesService {
     }
 
     /**
-     * Gets all the series currently in the database
+     * Gets all the series currently in the database.
      * @return A List containing all the Series currently stored in the database
      */
     public List<Series> getAllSeries() {
@@ -62,7 +62,7 @@ public class SeriesService {
     }
 
     /**
-     * Initializes the Add New Series Screen
+     * Initializes the Add New Series Screen.
      * @throws IOException When the fxml cannot be found
      */
     public void initializeAddNewSeriesScreen() throws IOException {

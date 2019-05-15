@@ -22,7 +22,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Controlls the main page of the application
+ * Controlls the main page of the application.
  */
 @Controller
 public class MainlistPageController implements Initializable {
@@ -83,7 +83,7 @@ public class MainlistPageController implements Initializable {
     }
 
     /**
-     * Initializes the basic functionality of the table by setting the columns cell value factory
+     * Initializes the basic functionality of the table by setting the columns cell value factory.
      * @param location
      * @param resources
      */
