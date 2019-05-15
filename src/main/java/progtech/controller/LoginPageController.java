@@ -36,6 +36,7 @@ public class LoginPageController implements Initializable {
     @FXML
     private Button loginButton;
     @FXML
+
     private AnchorPane anchorPane;
     private UserService userService;
     private SeriesService seriesService;
@@ -55,8 +56,8 @@ public class LoginPageController implements Initializable {
 
     /**
      * Initializes the login page so that the login button fires when Enter was hit.
-     * @param location
-     * @param resources
+     * @param location not used
+     * @param resources not used
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
