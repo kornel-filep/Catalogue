@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import progtech.Main;
-import progtech.model.user.User;
+import progtech.domain.user.User;
 import progtech.service.SeriesService;
 import progtech.service.UserService;
 
@@ -23,6 +23,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the Login page.
+ */
 @Controller
 @Slf4j
 public class LoginPageController implements Initializable {
@@ -44,6 +47,11 @@ public class LoginPageController implements Initializable {
         this.mainlistPageController = mainlistPageController;
     }
 
+    /**
+     * Initializes the login page so that the login button fires when Enter was hit.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         log.debug("initializing event handler for anchor pane");
@@ -55,6 +63,11 @@ public class LoginPageController implements Initializable {
         });
     }
 
+    /**
+     * Logs in the user to the application from the database. Shows and sets up the new main page.
+     *
+     * @throws IOException if it cant find the fxml file
+     */
     public void login() throws IOException {
         log.debug("Starting login for username: " + loginField.getText());
         User user = userService.loginAndGetUser(loginField.getText(), passwordField.getText());
@@ -66,10 +79,19 @@ public class LoginPageController implements Initializable {
         }
     }
 
+    /**
+     * Registers the user to the database.
+     */
     public void register() {
         userService.registerUser(loginField.getText(), passwordField.getText());
     }
 
+    /**
+     * Sets up the main screen and closes down the login screen.
+     * @param user The logged in user
+     * @return The Stage
+     * @throws IOException Thrown when the fxml file cannot be found
+     */
     private Stage setUpMainScreen(User user) throws IOException {
         log.debug("Setting up the main screen");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mainlist.fxml"));

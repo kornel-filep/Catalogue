@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import progtech.dao.UserDao;
-import progtech.model.user.User;
+import progtech.domain.user.User;
 
 import javax.persistence.EntityNotFoundException;
 

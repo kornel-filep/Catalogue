@@ -14,6 +14,9 @@ import progtech.service.SeriesService;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the form for adding new series.
+ */
 @Controller
 public class AddNewSeriesController implements Initializable {
     @FXML
@@ -32,11 +35,17 @@ public class AddNewSeriesController implements Initializable {
         this.seriesService = seriesService;
     }
 
+    /**
+     * Saves the Series to the database.
+     */
     public void save() {
         seriesService.saveSeries(nameField.getText(), episodesField.getText(), descriptionField.getText());
         nameField.getScene().getWindow().hide();
     }
 
+    /**
+     * Initializes the form. Adds an event handler to the {@code AnchorPane} to submit the form on Enter.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         anchorPane.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {

@@ -1,13 +1,16 @@
-package progtech.model.user;
+package progtech.domain.user;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import progtech.model.Episode;
-import progtech.model.Series;
+import progtech.domain.Episode;
+import progtech.domain.Series;
 
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Stores the data of the user of the application.
+ */
 @Data
 @NoArgsConstructor
 @Entity

@@ -11,6 +11,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+/**
+ * Entry point of the Spring Boot Application.
+ */
 @SpringBootApplication
 @Slf4j
 public class Main extends Application {
@@ -21,6 +24,10 @@ public class Main extends Application {
     @Getter
     private static FXMLLoader fxmlLoader;
 
+    /**
+     * Initializes the application with custom spring context.
+     * @throws Exception if the fxml cannnot be found
+     */
     @Override
     public void init() throws Exception {
         log.debug("Initializing application with custom spring context");
@@ -30,7 +37,11 @@ public class Main extends Application {
         root = fxmlLoader.load();
     }
 
-
+    /**
+     * Starts the application.
+     * @param primaryStage The window that needs to be opened when the application starts
+     * @throws Exception if the fxml cannot be found
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("Catalogue");
@@ -42,7 +53,6 @@ public class Main extends Application {
     public void stop() throws Exception {
         springContext.stop();
     }
-
 
     public static void main(String[] args) {
         launch(Main.class, args);

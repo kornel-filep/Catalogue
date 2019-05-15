@@ -10,14 +10,17 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lombok.Setter;
 import org.springframework.stereotype.Controller;
-import progtech.model.Episode;
-import progtech.model.Series;
+import progtech.domain.Episode;
+import progtech.domain.Series;
 import progtech.service.EpisodeService;
 import progtech.service.SeriesService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the new episode adding screen.
+ */
 @Controller
 public class AddNewEpisodeController implements Initializable {
     @FXML
@@ -42,6 +45,9 @@ public class AddNewEpisodeController implements Initializable {
         this.episodeService = episodeService;
     }
 
+    /**
+     * Saves the episode into the database.
+     */
     public void save() {
         Episode episode = episodeService.createEpisode(series, nameField.getText(), numberField.getText(),
                 seasonField.getText(), descriptionField.getText());
@@ -51,6 +57,9 @@ public class AddNewEpisodeController implements Initializable {
         nameField.getScene().getWindow().hide();
     }
 
+    /**
+     * Initializes the form.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         anchorPane.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {

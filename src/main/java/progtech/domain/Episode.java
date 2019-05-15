@@ -1,4 +1,4 @@
-package progtech.model;
+package progtech.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +8,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Stores the episode information of the Episode.
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

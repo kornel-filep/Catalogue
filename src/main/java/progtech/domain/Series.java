@@ -1,4 +1,4 @@
-package progtech.model;
+package progtech.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +9,9 @@ import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Stores the Series information of the Series.
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

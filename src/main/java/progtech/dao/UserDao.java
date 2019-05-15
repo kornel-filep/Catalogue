@@ -1,13 +1,16 @@
 package progtech.dao;
 
 import org.springframework.stereotype.Component;
-import progtech.model.user.User;
+import progtech.domain.user.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+/**
+ * The Dao to interact with the User domain object.
+ */
 @Component
 public class UserDao {
     @PersistenceContext

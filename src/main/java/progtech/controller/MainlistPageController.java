@@ -10,9 +10,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Controller;
-import progtech.model.Episode;
-import progtech.model.Series;
-import progtech.model.user.User;
+import progtech.domain.Episode;
+import progtech.domain.Series;
+import progtech.domain.user.User;
 import progtech.service.EpisodeService;
 import progtech.service.SeriesService;
 import progtech.service.UserService;
@@ -21,6 +21,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controlls the main page of the application
+ */
 @Controller
 public class MainlistPageController implements Initializable {
 
@@ -79,6 +82,11 @@ public class MainlistPageController implements Initializable {
         this.episodeService = episodeService;
     }
 
+    /**
+     * Initializes the basic functionality of the table by setting the columns cell value factory
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Series, String>("name"));
@@ -88,17 +96,12 @@ public class MainlistPageController implements Initializable {
     }
 
     /**
-     * <pre>
-     * Some text here.
-     *
-     * <code>
-     *     public static void main(String[] args){
-     *         MainlistPageController.start();
-     *     }
-     * </code>
-     * </pre>
+     * The functionality depends on the text of the button.
+     * If the text is "Add" then it adds series to the user.
+     * If the text is "Show Episodes" then it shows the Episodes of the selected series.
+     * If the text is "Back" then it goes back to the previous page.
      */
-    public void addSeriesToUser() {
+    public void handleMultipurposeButton() {
         if (addButton.getText().equals("Add")) {
             Series series = table.getSelectionModel().getSelectedItem();
             userService.addSeriesToUser(series, user);
@@ -129,6 +132,9 @@ public class MainlistPageController implements Initializable {
         }
     }
 
+    /**
+     * Shows the series depending on the text shown on the button.
+     */
     public void showSeries() {
         if (listButton.getText().equals("Show Own")) {
             user = userService.findById(user.getId());
@@ -144,6 +150,9 @@ public class MainlistPageController implements Initializable {
         }
     }
 
+    /**
+     * Adds the selected episode to the watched list.
+     */
     public void watchedClick() {
         Episode episode = episodeTable.getSelectionModel().getSelectedItem();
         user.getWatchedEpisodes().add(episode);
@@ -152,10 +161,18 @@ public class MainlistPageController implements Initializable {
         episodeTable.getItems().addAll(currentlySelectedSeries.getEpisodeList());
     }
 
+    /**
+     * Admin operation, opens up a new screen to add a new Series.
+     * @throws IOException when the fxml cannot be found
+     */
     public void addNewSeries() throws IOException {
         seriesService.initializeAddNewSeriesScreen();
     }
 
+    /**
+     * Admin operation, opens up a new screen to add a new Episode to the selected Series.
+     * @throws IOException when the fxml cannot be found
+     */
     public void addNewEpisode() throws IOException {
         if (table.getSelectionModel().getSelectedItem() != null) {
             episodeService.initializeEpisodeScreen(addNewEpisodeController, table);

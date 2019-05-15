@@ -5,8 +5,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import progtech.dao.EpisodeDao;
-import progtech.model.Episode;
-import progtech.model.Series;
+import progtech.domain.Episode;
+import progtech.domain.Series;
 
 public class EpisodeServiceTest {
 

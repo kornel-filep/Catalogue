@@ -1,7 +1,7 @@
 package progtech.dao;
 
 import org.springframework.stereotype.Component;
-import progtech.model.Episode;
+import progtech.domain.Episode;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +9,9 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * The Dao that interacts with the Episode domain object
+ */
 @Component
 public class EpisodeDao {
     @PersistenceContext
