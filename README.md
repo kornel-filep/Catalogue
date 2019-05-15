@@ -1,5 +1,5 @@
 # Catalogue
-======
+
 Description
 -----------
 Catalogue is a simple Series and Episodes tracking application.
