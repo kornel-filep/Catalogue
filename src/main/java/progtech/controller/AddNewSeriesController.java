@@ -31,6 +31,10 @@ public class AddNewSeriesController implements Initializable {
     private AnchorPane anchorPane;
     private SeriesService seriesService;
 
+    /**
+     * Basic constructor used for autowiring by Spring.
+     * @param seriesService Autowired SeriesService by Spring
+     */
     public AddNewSeriesController(SeriesService seriesService) {
         this.seriesService = seriesService;
     }

@@ -27,6 +27,14 @@ public class Episode {
     private int season;
     private String description;
 
+    /**
+     * Constructor used to create the domain object.
+     * @param series the Series object
+     * @param name the name of the episode
+     * @param episodeCount the episode count in the season of the episode
+     * @param season season number of the episode
+     * @param description the short description of the episode
+     */
     public Episode(Series series, String name, int episodeCount, int season, String description) {
         this.series = series;
         this.name = name;

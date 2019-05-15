@@ -27,6 +27,13 @@ public class Series {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Episode> episodeList;
 
+    /**
+     * Controller used to create the Series object.
+     * @param name name of the series
+     * @param episodes the count of episodes
+     * @param description the description of the series
+     * @param episodeList the list of episodes in the series
+     */
     public Series(String name, int episodes, String description, Set<Episode> episodeList) {
         this.name = name;
         this.episodes = episodes;

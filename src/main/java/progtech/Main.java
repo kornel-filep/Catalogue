@@ -54,6 +54,10 @@ public class Main extends Application {
         springContext.stop();
     }
 
+    /**
+     * Starts the application.
+     * @param args isnt rly used its just for the looks
+     */
     public static void main(String[] args) {
         launch(Main.class, args);
     }

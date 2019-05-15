@@ -40,6 +40,11 @@ public class AddNewEpisodeController implements Initializable {
     private SeriesService seriesService;
     private EpisodeService episodeService;
 
+    /**
+     * Constructor used for autowiring.
+     * @param seriesService the series service autowired by Spring
+     * @param episodeService the episode service autowired by Spring
+     */
     public AddNewEpisodeController(SeriesService seriesService, EpisodeService episodeService) {
         this.seriesService = seriesService;
         this.episodeService = episodeService;

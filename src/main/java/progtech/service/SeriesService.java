@@ -22,6 +22,10 @@ import java.util.List;
 public class SeriesService {
     private SeriesDao seriesDao;
 
+    /**
+     * Basic constructor used for autowiring.
+     * @param seriesDao autowired by Spring
+     */
     public SeriesService(SeriesDao seriesDao) {
         this.seriesDao = seriesDao;
     }

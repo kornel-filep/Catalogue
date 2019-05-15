@@ -23,6 +23,10 @@ import java.io.IOException;
 public class EpisodeService {
     private EpisodeDao episodeDao;
 
+    /**
+     * Basic constructor used for autowiring by Spring.
+     * @param episodeDao autowired by Spring
+     */
     public EpisodeService(EpisodeDao episodeDao) {
         this.episodeDao = episodeDao;
     }

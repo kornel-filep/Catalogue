@@ -36,6 +36,10 @@ public class Config {
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
+    /**
+     * Configures the datasource of the application.
+     * @return the datasource of the application
+     */
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -48,6 +52,10 @@ public class Config {
         return dataSource;
     }
 
+    /**
+     * Configures the entitymanagerfactory.
+     * @return a LocalContainerEntityManagerFactoryBean configured for the application
+     */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em
@@ -61,6 +69,11 @@ public class Config {
         return em;
     }
 
+    /**
+     * Configures the trainsaction manager via Spring.
+     * @param emf the entitymanagerfactory of the application
+     * @return a PlatformTransactionManager
+     */
     @Bean
     public PlatformTransactionManager transactionManager(
             EntityManagerFactory emf) {
@@ -70,6 +83,10 @@ public class Config {
         return transactionManager;
     }
 
+    /**
+     * Configures additional properties for the data source.
+     * @return the properties object containing the additional stuff
+     */
     private Properties additionalProperties() {
         Properties properties = new Properties();
         //properties.setProperty("hibernate.show_sql", "true");

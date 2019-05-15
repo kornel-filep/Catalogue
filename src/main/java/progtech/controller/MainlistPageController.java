@@ -74,6 +74,13 @@ public class MainlistPageController implements Initializable {
     private AddNewEpisodeController addNewEpisodeController;
     private EpisodeService episodeService;
 
+    /**
+     * Basic constructor used for autowiring.
+     * @param seriesService autowired by Spring
+     * @param userService autowired by Spring
+     * @param addNewEpisodeController autowired by Spring
+     * @param episodeService autowired by Spring
+     */
     public MainlistPageController(SeriesService seriesService, UserService userService,
             AddNewEpisodeController addNewEpisodeController, EpisodeService episodeService) {
         this.seriesService = seriesService;

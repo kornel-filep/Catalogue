@@ -27,6 +27,11 @@ public class User {
     private Set<Episode> watchedEpisodes;
     private boolean isAdmin;
 
+    /**
+     * Constructor used to create the User object.
+     * @param name name of the user
+     * @param password password of the user
+     */
     public User(String name, String password) {
         this.name = name;
         this.password = password;

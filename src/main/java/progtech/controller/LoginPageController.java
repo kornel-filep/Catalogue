@@ -41,6 +41,12 @@ public class LoginPageController implements Initializable {
     private SeriesService seriesService;
     private MainlistPageController mainlistPageController;
 
+    /**
+     * Basic constructor used for autowiring.
+     * @param userService autowired by Spring
+     * @param seriesService autowired by Spring
+     * @param mainlistPageController autowired by Spring
+     */
     public LoginPageController(UserService userService, SeriesService seriesService, MainlistPageController mainlistPageController) {
         this.userService = userService;
         this.seriesService = seriesService;

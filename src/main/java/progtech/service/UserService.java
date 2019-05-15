@@ -16,6 +16,10 @@ import javax.transaction.Transactional;
 public class UserService {
     private UserDao userDao;
 
+    /**
+     * Basic constructor used for autowiring by Spring.
+     * @param userDao autowired by Spring
+     */
     public UserService(UserDao userDao) {
         this.userDao = userDao;
     }

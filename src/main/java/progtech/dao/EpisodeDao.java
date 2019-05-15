@@ -17,11 +17,19 @@ public class EpisodeDao {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * Persists the Episode domain object.
+     * @param episode the episode to be persisted
+     */
     @Transactional
     public void persist(Episode episode){
         entityManager.persist(episode);
     }
 
+    /**
+     * Finds all Episodes stored in the database.
+     * @return a list of episodes that are currently in the database
+     */
     public List<Episode> findAll(){
         Query q = entityManager.createQuery("SELECT e FROM e Episode");
         return q.getResultList();
