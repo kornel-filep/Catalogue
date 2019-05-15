@@ -2,7 +2,7 @@
 
 Description
 -----------
-Catalogue is a simple Series and Episodes tracking application.
+Catalogue is a simple Series and Episodes tracking application.  
 This application is an assignment for **Programming Technologies** and **Programming Environments** class at the [University of Debrecen, Faculty of Informatics](http://www.inf.unideb.hu/).
 To run the application you need at least java version 1.8 and to compile and package it yourself you need the JDK and maven installed and configured, so keep that in mind.
 
