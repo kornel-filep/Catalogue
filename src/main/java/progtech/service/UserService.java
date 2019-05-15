@@ -3,6 +3,7 @@ package progtech.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import progtech.dao.UserDao;
+import progtech.model.Series;
 import progtech.model.user.User;
 
 import javax.transaction.Transactional;
@@ -55,12 +56,12 @@ public class UserService {
         userDao.update(user);
     }
 
-    public void refresh(User user) {
-        userDao.refresh(user);
-    }
-
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
 
+    public void addSeriesToUser(Series series, User user) {
+        user.getSeries().add(series);
+        update(user);
+    }
 }

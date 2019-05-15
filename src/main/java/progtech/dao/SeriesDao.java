@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class SeriesDao {
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Transactional
     public void persist(Series series){

@@ -101,8 +101,7 @@ public class MainlistPageController implements Initializable {
     public void addSeriesToUser() {
         if (addButton.getText().equals("Add")) {
             Series series = table.getSelectionModel().getSelectedItem();
-            user.getSeries().add(series);
-            userService.update(user);
+            userService.addSeriesToUser(series, user);
         } else if (addButton.getText().equals("Show Episodes")) {
             episodeTable.getItems().clear();
             currentlySelectedSeries = table.getSelectionModel().getSelectedItem();

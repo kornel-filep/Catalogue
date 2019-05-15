@@ -21,7 +21,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void loginAndGetUserShouldGetUserFromDaoAndReturnUser() {
+    void testLoginAndGetUserShouldGetUserFromDaoAndReturnUser() {
         User expected = new User("Kornel", "123");
         Mockito.when(userDao.findByUsername("Kornel")).thenReturn(expected);
         User user = userService.loginAndGetUser("Kornel", "123");
@@ -31,19 +31,32 @@ public class UserServiceTest {
     }
 
     @Test
-    void loginAndGetUserSHouldReturnNullIfNoSuchUser() {
-        Mockito.when(userDao.findByUsername("Kornel")).thenReturn(null);
+    void testLoginAndGetUserSHouldThrowEntityNotFoundException() {
+        Mockito.when(userDao.findByUsername(Mockito.any())).thenReturn(null);
         User user = userService.loginAndGetUser("Kornel", "123");
-
         Assertions.assertNull(user);
         Mockito.verify(userDao, Mockito.atLeastOnce()).findByUsername("Kornel");
     }
 
     @Test
-    void registerUserShouldPersistUserThroughDao() {
+    void testRegisterUserShouldPersistUserThroughDao() {
         Mockito.when(userDao.findByUsername("Kornel")).thenThrow(new EntityNotFoundException());
         userService.registerUser("Kornel", "123");
         Mockito.verify(userDao, Mockito.atLeastOnce()).persist(new User("Kornel", "123"));
+    }
+
+    @Test
+    void testUpdateShouldCallDaoToUpdate() {
+        userService.update(new User());
+        Mockito.verify(userDao, Mockito.atLeastOnce()).persist(Mockito.any(User.class));
+    }
+
+    @Test
+    void testFindByIdShouldCallDaoToFindId() {
+        Mockito.when(userDao.find(1)).thenReturn(new User("Name", "password"));
+        User user = userService.findById(1);
+        Assertions.assertEquals(new User("Name", "password"), user);
+        Mockito.verify(userDao).find(1);
     }
 
 }

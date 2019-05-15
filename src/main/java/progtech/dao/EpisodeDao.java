@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class EpisodeDao {
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Transactional
     public void persist(Episode episode){
