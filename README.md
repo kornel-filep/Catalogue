@@ -20,7 +20,6 @@ Maven-specific:
 - [x] `maven-javadoc-plugin`
 - [x] `maven-surefire-report-plugin` 
 - [x] `maven-jxr-plugin`
-- [x] `cobertura-maven-plugin`
 - [x] `maven-checkstyle-plugin`
 
 Documentation:
