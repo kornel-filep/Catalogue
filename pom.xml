@@ -266,4 +266,10 @@
 
     </dependencies>
 
+    <scm>
+        <connection>scm:git:https://github.com/kornel-filep/Catalogue.git</connection>
+        <developerConnection>scm:git:https://github.com/kornel-filep/Catalogue.git</developerConnection>
+        <url>https://github.com/kornel-filep/Catalogue.git</url>
+    </scm>
+
 </project>
